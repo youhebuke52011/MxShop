@@ -24,7 +24,7 @@ from rest_framework.pagination import PageNumberPagination
 
 
 class GoodPagination(PageNumberPagination):
-    page_size = 25
+    page_size = 24
     page_query_param = 'p'
     page_size_query_param = 'n'
     max_page_size = 100
@@ -49,7 +49,7 @@ class GoodListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
     filterset_class = GoodFilter
     search_fields = ('name', 'goods_sn')
-    ordering_fields = ('click_num', 'shop_price')
+    ordering_fields = ('sold_num', 'shop_price')
 
 
 class CategoryViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):

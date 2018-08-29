@@ -25,6 +25,7 @@ import xadmin
 # from goods.views import GoodListView
 from goods.views import GoodListViewSet, CategoryViewset
 from MxShop.settings import MEDIA_ROOT
+from rest_framework.authtoken import views
 
 router = DefaultRouter()
 
@@ -44,6 +45,6 @@ urlpatterns = [
     # url(r'^goods/$', GoodListView.as_view()),
     # url(r'^goods/$', good_list, name="good-list"),
     url(r'^', include(router.urls)),
-
+    url(r'^api-token-auth/', views.obtain_auth_token),
 
 ]

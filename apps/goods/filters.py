@@ -8,8 +8,8 @@ from .models import Goods
 
 class GoodFilter(django_filters.rest_framework.FilterSet):
 
-    price_min = django_filters.NumberFilter(field_name='shop_price', lookup_expr='gte')
-    price_max = django_filters.NumberFilter(field_name='shop_price', lookup_expr='lte')
+    pricemin = django_filters.NumberFilter(field_name='shop_price', lookup_expr='gte')
+    pricemax = django_filters.NumberFilter(field_name='shop_price', lookup_expr='lte')
     name = django_filters.CharFilter(field_name='name',lookup_expr='contains')
     top_category = django_filters.NumberFilter(method='top_category_filter')
 
@@ -22,4 +22,4 @@ class GoodFilter(django_filters.rest_framework.FilterSet):
 
     class Meta:
         model = Goods
-        fields = ['price_min', 'price_max', 'name']
+        fields = ['pricemin', 'pricemax', 'name']
