@@ -24,14 +24,17 @@ import xadmin
 # from goods.view_base import GoodsListView
 # from goods.views import GoodListView
 from goods.views import GoodListViewSet, CategoryViewset
+from user.views import SmsCodeViewset, UserViewSet
 from MxShop.settings import MEDIA_ROOT
 from rest_framework.authtoken import views
 from rest_framework_jwt.views import obtain_jwt_token
 
 router = DefaultRouter()
 
-router.register(r'goods', GoodListViewSet)
-router.register(r'categorys', CategoryViewset)
+router.register(r'goods', GoodListViewSet, base_name="goods")
+router.register(r'categorys', CategoryViewset, base_name="categorys")
+router.register(r'codes', SmsCodeViewset, base_name="codes")
+router.register(r'users', UserViewSet, base_name="users")
 
 
 urlpatterns = [

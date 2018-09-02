@@ -11,7 +11,7 @@ from rest_framework import viewsets, status
 
 User = get_user_model()
 
-from .serializers import SmsSerializer
+from .serializers import SmsSerializer, UserReSerializer
 from .models import VerifyCode
 from utils.yunpian import YunPian
 from MxShop.settings import APIKEY
@@ -59,11 +59,16 @@ class SmsCodeViewset(CreateModelMixin, viewsets.GenericViewSet):
 
         if sms_status["code"] != 0:
             return Response({
-                "mobile":sms_status["msg"]
+                "mobile": sms_status["msg"]
             }, status=status.HTTP_400_BAD_REQUEST)
         else:
             code_record = VerifyCode(code=code, mobile=mobile)
             code_record.save()
             return Response({
-                "mobile":mobile
+                "mobile": mobile
             }, status=status.HTTP_201_CREATED)
+
+
+class UserViewSet(CreateModelMixin, viewsets.GenericViewSet):
+    serializer_class = UserReSerializer
+    # queryset = User.objects.
