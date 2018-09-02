@@ -26,6 +26,7 @@ import xadmin
 from goods.views import GoodListViewSet, CategoryViewset
 from MxShop.settings import MEDIA_ROOT
 from rest_framework.authtoken import views
+from rest_framework_jwt.views import obtain_jwt_token
 
 router = DefaultRouter()
 
@@ -45,6 +46,9 @@ urlpatterns = [
     # url(r'^goods/$', GoodListView.as_view()),
     # url(r'^goods/$', good_list, name="good-list"),
     url(r'^', include(router.urls)),
-    url(r'^api-token-auth/', views.obtain_auth_token),
+    # drf自带token认证
+    # url(r'^api-token-auth/', views.obtain_auth_token),
+    # jwt认证
+    url(r'^login/', obtain_jwt_token),
 
 ]

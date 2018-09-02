@@ -38,6 +38,7 @@ class GoodPagination(PageNumberPagination):
 
 from rest_framework import viewsets,filters
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.authentication import TokenAuthentication
 
 from .filters import GoodFilter
 
@@ -50,6 +51,7 @@ class GoodListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     filterset_class = GoodFilter
     search_fields = ('name', 'goods_sn')
     ordering_fields = ('sold_num', 'shop_price')
+    # authentication_classes = (TokenAuthentication,)
 
 
 class CategoryViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
