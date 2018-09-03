@@ -8,3 +8,7 @@ apps/user/__pycache__/*
 apps/trade/__pycache__/*
 apps/goods/__pycache__/*
 MxShop/settings.py
+apps/user_operation/migrations/__pycache__/*
+apps/user/migrations/__pycache__/*
+apps/trade/migrations/__pycache__/*
+apps/goods/migrations/__pycache__/*
