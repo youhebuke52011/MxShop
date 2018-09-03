@@ -55,6 +55,13 @@ class UserReSerializer(serializers.ModelSerializer):
         style={'input_type': 'password'}, help_text="密码", label="密码", write_only=True,
     )
 
+    # 用信号量来代替
+    # def create(self, validated_data):
+    #     user = super(UserReSerializer, self).create(validated_data=validated_data)
+    #     user.set_password(validated_data["password"])
+    #     user.save()
+    #     return user
+
     def validate_code(self, code):
         verify_record = VerifyCode.objects.filter(mobile=self.initial_data['username'], code=code).order_by('-add_time')
         if verify_record.exists():
