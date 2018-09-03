@@ -1,13 +1,11 @@
 .idea/
 db.sqlite3
-manage.py
+Mxshop/settings.py
 MxShop/__pycache__/*
-extra_apps/xadmin/*
 apps/user_operation/__pycache__/*
 apps/user/__pycache__/*
 apps/trade/__pycache__/*
 apps/goods/__pycache__/*
-MxShop/settings.py
 apps/user_operation/migrations/__pycache__/*
 apps/user/migrations/__pycache__/*
 apps/trade/migrations/__pycache__/*
