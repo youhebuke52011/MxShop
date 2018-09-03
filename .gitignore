@@ -1,6 +1,6 @@
 .idea/
 db.sqlite3
-Mxshop/settings.py
+MxShop/settings.py
 MxShop/__pycache__/*
 apps/user_operation/__pycache__/*
 apps/user/__pycache__/*
