@@ -36,14 +36,14 @@ class GoodPagination(PageNumberPagination):
 #     serializer_class = GoodSerializer
 #     pagination_class = GoodPagination
 
-from rest_framework import viewsets,filters
+from rest_framework import viewsets, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.authentication import TokenAuthentication
 
 from .filters import GoodFilter
 
 
-class GoodListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+class GoodListViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     queryset = Goods.objects.all()
     serializer_class = GoodSerializer
     pagination_class = GoodPagination

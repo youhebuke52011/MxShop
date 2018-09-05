@@ -3,7 +3,7 @@ __author__ = 'li'
 
 from rest_framework import serializers
 
-from goods.models import Goods, GoodsCategory
+from goods.models import Goods, GoodsCategory, GoodsImage
 
 # class GoodSerializer(serializers.Serializer):
 #     goods_sn = serializers.CharField(max_length=50)
@@ -33,8 +33,15 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class GoodImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GoodsImage
+        fields = ('image',)
+
+
 class GoodSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
+    images = GoodImageSerializer(many=True)
 
     class Meta:
         model = Goods
