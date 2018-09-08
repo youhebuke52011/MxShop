@@ -6,13 +6,15 @@ from django.contrib.auth import get_user_model
 from django.db.models import Q
 from random import choice
 from rest_framework.response import Response
-from rest_framework.mixins import CreateModelMixin
-from rest_framework import viewsets, status
+from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin
+from rest_framework import viewsets, status, permissions
+from rest_framework.authentication import SessionAuthentication
 from rest_framework_jwt.serializers import jwt_payload_handler, jwt_encode_handler
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 User = get_user_model()
 
-from .serializers import SmsSerializer, UserReSerializer
+from .serializers import SmsSerializer, UserReSerializer, UserDetailSerializer
 from .models import VerifyCode
 from utils.yunpian import YunPian
 from MxShop.settings import APIKEY
@@ -71,9 +73,36 @@ class SmsCodeViewset(CreateModelMixin, viewsets.GenericViewSet):
             }, status=status.HTTP_201_CREATED)
 
 
-class UserViewSet(CreateModelMixin, viewsets.GenericViewSet):
-    serializer_class = UserReSerializer
+class UserViewSet(CreateModelMixin, RetrieveModelMixin, viewsets.GenericViewSet):
+    """
+    create:
+    用户注册
+
+    retrieve:
+    用户详情
+    """
     queryset = User.objects.all()
+    authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication)
+    # permission_classes = (permissions.IsAuthenticated)
+
+    def get_permissions(self):
+        """
+        注册不需要权限
+        用户详情需要
+        :return:
+        """
+        if self.action == 'retrieve':
+            return super(UserViewSet, self).get_permissions()
+        else:
+            return []
+
+    # serializer_class = UserReSerializer
+
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            return UserDetailSerializer
+        else:
+            return UserReSerializer
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)

@@ -44,6 +44,13 @@ from .filters import GoodFilter
 
 
 class GoodListViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+    """
+    list:
+    商品列表
+
+    retrieve:
+    商品详情
+    """
     queryset = Goods.objects.all()
     serializer_class = GoodSerializer
     pagination_class = GoodPagination
@@ -55,5 +62,12 @@ class GoodListViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets
 
 
 class CategoryViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+    """
+    list:
+    类别列表
+
+    retrieve:
+    类别详情
+    """
     queryset = GoodsCategory.objects.filter(category_type=1)
     serializer_class = CategorySerializer

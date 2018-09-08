@@ -29,6 +29,7 @@ from user_operation.views import UserFavViewSet
 from MxShop.settings import MEDIA_ROOT
 from rest_framework.authtoken import views
 from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework.documentation import include_docs_urls
 
 router = DefaultRouter()
 
@@ -55,5 +56,7 @@ urlpatterns = [
     # url(r'^api-token-auth/', views.obtain_auth_token),
     # jwt认证
     url(r'^login/', obtain_jwt_token),
+
+    url(r'^docs/', include_docs_urls('mxshop', public=False)),
 
 ]
