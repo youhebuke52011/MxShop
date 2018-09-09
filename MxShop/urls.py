@@ -25,7 +25,7 @@ import xadmin
 # from goods.views import GoodListView
 from goods.views import GoodListViewSet, CategoryViewset
 from user.views import SmsCodeViewset, UserViewSet
-from user_operation.views import UserFavViewSet
+from user_operation.views import UserFavViewSet, LeavingMessageViewset, UserAddressViewSet
 from MxShop.settings import MEDIA_ROOT
 from rest_framework.authtoken import views
 from rest_framework_jwt.views import obtain_jwt_token
@@ -38,6 +38,8 @@ router.register(r'categorys', CategoryViewset, base_name="categorys")
 router.register(r'codes', SmsCodeViewset, base_name="codes")
 router.register(r'users', UserViewSet, base_name="users")
 router.register(r'userfavs', UserFavViewSet, base_name="userfavs")
+router.register(r'messages', LeavingMessageViewset, base_name="messages")
+router.register(r'address', UserAddressViewSet, base_name="address")
 
 
 urlpatterns = [
