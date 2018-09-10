@@ -25,6 +25,7 @@ import xadmin
 # from goods.views import GoodListView
 from goods.views import GoodListViewSet, CategoryViewset
 from user.views import SmsCodeViewset, UserViewSet
+from trade.views import ShoppingCartViewset
 from user_operation.views import UserFavViewSet, LeavingMessageViewset, UserAddressViewSet
 from MxShop.settings import MEDIA_ROOT
 from rest_framework.authtoken import views
@@ -40,6 +41,7 @@ router.register(r'users', UserViewSet, base_name="users")
 router.register(r'userfavs', UserFavViewSet, base_name="userfavs")
 router.register(r'messages', LeavingMessageViewset, base_name="messages")
 router.register(r'address', UserAddressViewSet, base_name="address")
+router.register(r'shopcarts', ShoppingCartViewset, base_name="shopcarts")
 
 
 urlpatterns = [
@@ -54,8 +56,6 @@ urlpatterns = [
     # url(r'^goods/$', GoodListView.as_view()),
     # url(r'^goods/$', good_list, name="good-list"),
     url(r'^', include(router.urls)),
-    # drf自带token认证
-    # url(r'^api-token-auth/', views.obtain_auth_token),
     # jwt认证
     url(r'^login/', obtain_jwt_token),
 
