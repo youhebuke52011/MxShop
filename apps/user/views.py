@@ -113,6 +113,7 @@ class UserViewSet(CreateModelMixin, RetrieveModelMixin, viewsets.GenericViewSet)
         result = serializer.data
         payload = jwt_payload_handler(user)
         result["token"] = jwt_encode_handler(payload)
+        result["user"] = user
 
         headers = self.get_success_headers(serializer.data)
         return Response(result, status=status.HTTP_201_CREATED, headers=headers)
