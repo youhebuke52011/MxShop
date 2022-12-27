@@ -30,7 +30,7 @@ psycopg2==2.7.5
 pytz==2018.5
 PyYAML==3.13
 requests==2.19.1
-setuptools==40.0.0   
+setuptools==65.5.1   
 six==1.11.0
 tablib==0.12.1
 unicodecsv==0.14.1   
